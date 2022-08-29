@@ -8,7 +8,7 @@ import {filterImageFromURL, deleteLocalFiles, result} from './util/util';
   const app = express();
 
   // Set the network port
-  const port = process.env.PORT || 8082;
+  const port: string|number = process.env.PORT || 8082;
   
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
@@ -39,10 +39,10 @@ import {filterImageFromURL, deleteLocalFiles, result} from './util/util';
 
   app.get( "/filteredimage", async ( req, res ) => {
     console.log (req.query)
-    const image=req.query.image_url
+    let image: string=req.query.image_url
     if(!image)
     {return res.status (400).send ("No image url")}
-    const filterimage=await filterImageFromURL(image)
+    const filterimage: string=await filterImageFromURL(image)
     console.log(filterimage)
     await result(res, req, filterimage)
       req.on('close', () => {

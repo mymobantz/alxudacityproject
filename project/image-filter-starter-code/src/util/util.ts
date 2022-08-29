@@ -40,5 +40,5 @@ export async function deleteLocalFiles(files: Array<string>) {
 }
 export async function result (res:any, req:any, filterimage:string )
 {
-  res.sendFile(filterimage)
+  res.status(200).sendFile(filterimage)
 }
